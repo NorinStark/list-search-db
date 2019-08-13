@@ -5,10 +5,11 @@ from bson.json_util import dumps
 
 app = Flask(__name__)
 
-MONGO_URI = 'mongodb://dev:sousdey123@ds219676-a0.mlab.com:19676,ds219676-a1.mlab.com:19676/heroku_pkl108wc?replicaSet=rs-ds219676'
+MONGO_URI = 'mongodb://sixsixone5:42577400Vj@ds133137.mlab.com:33137/heroku_mck6pbmw'
 mongo = MongoClient(MONGO_URI)
-mydb = mongo.heroku_pkl108wc
-mycol = mydb["customer_phones"]
+mydb = mongo.heroku_mck6pbmw
+mycol = mydb["products_548501935686874"]
+
 
 # MONGO_URI = 'mongodb://sixsixone5:42577400Vj@ds133137.mlab.com:33137/heroku_mck6pbmw'
 # mongo = MongoClient(MONGO_URI)
@@ -21,7 +22,7 @@ mycol = mydb["customer_phones"]
 # def hello():
 #     return "Hello World!"
 
-@app.route("/api/phones", methods = ['GET'])
+@app.route("/api/orders", methods = ['GET'])
 def show():
     page_id = request.args.get('pageid')
     print("==> ", page_id)
@@ -39,12 +40,12 @@ def show():
         # var_name = value_if_CONDITION_is_true if CONDITION else value_if_CONDITION_is_false
 
         # orders = myCollection.find()
-        phones = mycol.find().limit(50)
+        orders = mycol.find()
         # for order in orders:
         #     print("-=-> ", order)
 
         data = {
-            'phones': phones,
+            'orders': orders,
         }
     except Exception as e:
         print(e)
@@ -56,7 +57,7 @@ def show():
 @app.route('/')
 def index():
     # get data
-    customers_data = list(mycol.find().limit(100))
+    customers_data = list(mycol.find())
     # for phone in phone_numbers:
     #     print(phone)
     return render_template('index.html', data=customers_data)
