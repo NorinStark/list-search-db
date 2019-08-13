@@ -128,6 +128,17 @@
     table.table td i {
         font-size: 19px;
     }
+    img{
+        width: 70px;
+        max-width:300px;
+        height: auto;
+    }
+    th{
+        text-align: center;
+    }
+    td{
+        text-align: center;
+    }
 </style>
 <script type="text/javascript">
 
@@ -155,7 +166,7 @@ $('.idIncrease').each(function(){
             <div class="table-title">
                 <div class="row">
 					<div class="col-sm-6">
-						<h2>Customer <b>Details</b></h2>
+						<h2>Orders</h2>
 					</div>
                     <div class="col-sm-6">
                         <div class="search-box">
@@ -171,23 +182,27 @@ $('.idIncrease').each(function(){
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th style="width: 22%;">PAGE_ID</th>
-                        <th style="width: 22%;">PAGE_NAME</th>
-                        <th>PHONE</th>
-                        <th>COMMENTS</th>
-                        <th>Country</th>
+                        <th>ID</th>
+                        <th>NAME</th>
+                        <th>TYPE</th>
+                        <th>PRICE</th>
+                        <th>IMAGE</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody class="myTable">
                 {% for db in data %}
                     <tr id="myTable">
-                        <td class="idIncrease"></td>
-                        <td>{{ db.PAGE_ID }}</td>
-                        <td>{{ db.PAGE_NAME }}</td>
-                        <td>{{ db.phone }}</td>
-                        <td>{{ db.comment }}</td>
-                        <td>{{ db.country }}</td>
+                        <td class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        </td>
+                        <td>{{ db.id }}</td>
+                        <td>{{ db.name }}</td>
+                        <td>{{ db.type }}</td>
+                        <td>{{ db.price }}</td>
+                        <td>
+                            <img src="{{ db.image }}">
+                        </td>
                         <td>
                             <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                             <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
